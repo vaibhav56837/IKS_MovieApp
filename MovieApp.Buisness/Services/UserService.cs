@@ -17,7 +17,7 @@ namespace MovieApp.Business.Services
         {
             return _iuser.Register(userModel);
         }
-        public Object selectUsers()
+        public List<UserModel> selectUsers()
         {
             return _iuser.SelectUsers();
         }
@@ -34,7 +34,12 @@ namespace MovieApp.Business.Services
 
         public UserModel GetSpecificUsers(int UserId)
         {
-            return(_iuser.GetSpecificUsers(UserId));
+            return _iuser.GetSpecificUsers(UserId);
+        }
+
+        public UserModel Login(UserModel userModel)
+        {
+            return _iuser.Login(userModel);
         }
     }
 }

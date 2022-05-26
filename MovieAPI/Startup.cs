@@ -15,8 +15,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MovieAPI
 {
+    //class startup.cs is act as a middleware  
     public class Startup
     {
+        // IConfiguration is an interface use to acess the key and value through appsettings ....
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +29,7 @@ namespace MovieAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // here the using IConfiguarton we can connect to the underlaying database or to make the connection 
             String sqlConnection = Configuration.GetConnectionString("SqlConnection");
             services.AddDbContext<MovieDBContext>(options => options.UseSqlServer(sqlConnection));
             services.AddTransient<IUser, User>();

@@ -19,7 +19,7 @@ namespace MovieApp.Business.Services
             return _iTheatre.Register(theatreModel);
         }
 
-        public object SelectTheatre()
+        public List<TheatreModel> SelectTheatre()
         {
             return _iTheatre.SelectTheatres();
         }

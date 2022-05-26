@@ -14,14 +14,18 @@ namespace MovieApp.Data.Repositories
         {
             _movieDBContext = movieDBContext;
         }
-        
 
-        string IUser.Login()
+
+        public UserModel Login(UserModel userModel)
         {
-            throw new NotImplementedException();
+            UserModel userData = null;
+            var user = _movieDBContext.userModel.Where(u => u.Email == userModel.Email && u.Password == userModel.Password).ToList();
+            if (user.Count > 0)
+                userData = user[0];
+            return userData;
         }
 
-        
+
 
         public string Register(UserModel userModel)
         {
@@ -32,7 +36,7 @@ namespace MovieApp.Data.Repositories
             return msg;
         }
 
-        public object SelectUsers()
+        public List<UserModel> SelectUsers()
         {
             // select * from 
             List<UserModel> userList= _movieDBContext.userModel.ToList();

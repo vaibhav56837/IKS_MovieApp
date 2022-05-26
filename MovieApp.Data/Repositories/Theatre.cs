@@ -32,7 +32,7 @@ namespace MovieApp.Data.Repositories
             return msg;
         }
 
-         public object SelectTheatres()
+        public List<TheatreModel> SelectTheatres()
         {
             return _movieDBContext.theatreModel.ToList();
         }

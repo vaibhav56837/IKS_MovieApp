@@ -12,7 +12,7 @@ namespace MovieApp.Data.Repositories
 
         public void DeleteTheatre(int tId);
 
-        public object SelectTheatres();
+        public List<TheatreModel> SelectTheatres();
 
         public TheatreModel GetSpecificTheatre(int tId);
         

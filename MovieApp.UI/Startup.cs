@@ -22,6 +22,7 @@ namespace MovieApp.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddTransient<IUser ,User>
             services.AddControllersWithViews();
         }
 
@@ -36,10 +37,15 @@ namespace MovieApp.UI
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            // wwwroot - web root folder 
+            // css-> site.css 
+            // http://localhost:3433/site.css
+             // site.css can access directly through http request 
+             // since the site.css called as the static files 
             app.UseStaticFiles();
-
+ 
             app.UseRouting();
-
+           // app.UseAuthentication();//JWT ,OAuth
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

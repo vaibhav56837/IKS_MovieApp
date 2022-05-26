@@ -19,7 +19,7 @@ namespace MovieApp.Business.Services
             return _iMovie.Register(movieModel);
         }
 
-        public object SelectMovies()
+        public List<MovieModel> SelectMovies()
         {
             return _iMovie.SelectMovies();
         }

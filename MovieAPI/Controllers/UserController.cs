@@ -24,22 +24,28 @@ namespace MovieAPI.Controllers
         {
             return Ok(_userService.GetSpecificUsers(UserId));
         }
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Register(UserModel userModel)
         {
          return Ok(_userService.Register(userModel));
         }
-        [HttpPut]
+        [HttpPut("UpdateUser")]
         public IActionResult UpdateUser([FromBody] UserModel userModel)
         {
             _userService.UpdateUser(userModel);
             return Ok("User updated successfully!!");
         }
-        [HttpDelete]
+        [HttpDelete("DeleteUser")]
         public IActionResult DeleteUser(int UserId)
         {
             _userService.DeleteUser(UserId);
             return Ok("User Deleted successfully");
+        }
+
+        [HttpPost("Login")]
+        public IActionResult Login(UserModel userModel)
+        {
+            return Ok(_userService.Login(userModel));
         }
     }
 }

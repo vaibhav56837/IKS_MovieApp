@@ -15,7 +15,7 @@ namespace MovieAPI.Controllers
             _theatreService = theatreService;   
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Register(TheatreModel theatreModel)
         {
 
@@ -26,14 +26,14 @@ namespace MovieAPI.Controllers
         {
             return Ok(_theatreService.SelectTheatre());
         }
-        [HttpDelete]
+        [HttpDelete("DeleteTheatre")]
         public IActionResult DeleteTheatre(int tId)
         {
             _theatreService.DeleteTheatre(tId);
             return Ok("Deleted");
         }
 
-        [HttpPut]
+        [HttpPut("UpdateTheatre")]
         public IActionResult UpdateTheatre(TheatreModel theatreModel)
         {
             _theatreService.UpadateTheatre(theatreModel);

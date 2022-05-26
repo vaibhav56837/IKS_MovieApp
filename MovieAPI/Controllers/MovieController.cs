@@ -28,18 +28,18 @@ namespace MovieAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Register(MovieModel movieModel)
         {
             return Ok(_movieService.Register(movieModel));
         }
 
-        [HttpPut]
+        [HttpPut("UpdateMovie")]
         public IActionResult UpdateMovie([FromBody] MovieModel movieModel)
         {
             return Ok(_movieService.UpdateMovie(movieModel));
         }
-        [HttpDelete]
+        [HttpDelete("DeleteMovie")]
         public IActionResult DeleteMovie(int movieId)
         {
             return Ok(_movieService.DeleteMovie(movieId));  
@@ -47,7 +47,7 @@ namespace MovieAPI.Controllers
         [HttpPatch]
         public IActionResult UpdateMovieDetails([FromBody] MovieModel movieModel)
         {
-            return Ok(_movieService.UpdateMovie(movieModel));
+            return Ok(_movieService.UpdateMovieDetails(movieModel));
         }
     }
 }

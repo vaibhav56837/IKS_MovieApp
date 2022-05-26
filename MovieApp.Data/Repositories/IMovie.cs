@@ -6,7 +6,7 @@ namespace MovieApp.Data.Repositories
 {
     public interface IMovie
     {
-        public Object SelectMovies();
+        public List<MovieModel> SelectMovies();
 
         public string Register(MovieModel movieModel);
 

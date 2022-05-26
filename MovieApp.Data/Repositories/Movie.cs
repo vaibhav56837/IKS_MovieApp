@@ -50,8 +50,8 @@ namespace MovieApp.Data.Repositories
             msg = "Movie field updated";
             return msg;
         }
-       
-        public object SelectMovies()
+
+        public List<MovieModel> SelectMovies()
         {
             return _movieDBContext.movieModel.ToList();
         }
