@@ -17,6 +17,8 @@
               <th>TheatreLocation</th>
               <th>TheatreAddress</th>
               <th>TheatreClass</th>
+               <th>Update</th>
+              <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +32,14 @@
                             <td>@item.tLocation</td>
                             <td>@item.tAddress</td>
                            <td>@item.tClass</td>
+                           <td><a asp-action="UpdateTheatreDetails" asp-controller="Theatre" asp-route-tId="@item.tId">Update</a></td>
+                           <td><a asp-action="DeleteTheatreDetails" asp-controller="Theatre" asp-route-tId="@item.tId">Delete</a></td>
                         </tr>   
             }
          </tbody>
     </table>  
     
+     <div>
+       <a asp-action="RegisterTheatre" asp-controller="Movie" >Add-New-Theatre</a>
+   </div>
 

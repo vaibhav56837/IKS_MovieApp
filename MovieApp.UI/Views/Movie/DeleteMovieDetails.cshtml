@@ -1,0 +1,55 @@
+﻿@model MovieApp.Entity.MovieModel
+@{
+    ViewData["Title"] = "DeleteMovieDetails";
+}
+
+<a asp-action="ShowMovieDetails" asp-controller="Movie">Show-AllMovies</a>
+<hr />
+<h1>DeleteMovieDetails</h1>
+<hr />
+<div class="container">
+<form method="post">
+    <div class="form-group">
+        <label class="col-sm-3">MovieId</label>
+        <input  type="text" class="form-control" asp-for="MovieId" disabled="disabled" />
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3">MovieName</label>
+        <input  type="text" class="form-control" asp-for="MovieName" disabled="disabled"/>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3">MovieDescription</label>
+        <input  type="text" class="form-control" asp-for="MovieDescription" disabled="disabled" />
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3">MovieType</label>
+        <input  type="text" class="form-control" asp-for="MovieType" disabled="disabled"/>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3">MovieLanguage</label>
+        <input  type="text" class="form-control" asp-for="MovieLanguage" disabled="disabled"/>
+    </div>
+    <hr />
+    <div class="form-group col-sm-3">
+        <input type="submit" value="Confirm-Delete" class="btn btn-lg btn-block btn-primary"/>
+    </div>
+    <div>
+         <input  type="button" value="Reset" class="btn-secondary"/>
+    </div>
+   
+    <hr />
+    @if(ViewBag.status=="Success")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+   else if(ViewBag.status=="Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>
+</div>
+

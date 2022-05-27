@@ -49,13 +49,13 @@ namespace MovieApp.UI.Controllers
             return View();
         }
 
-        public  IActionResult Register()
+        public  IActionResult RegisterUser()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserModel userInfo)
+        public async Task<IActionResult> RegisterUser(UserModel userInfo)
         {
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
@@ -79,12 +79,12 @@ namespace MovieApp.UI.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult UserLogin()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(UserModel userModel)
+        public async Task<IActionResult> UserLogin(UserModel userModel)
         {
             using(HttpClient client =new HttpClient())
             {
@@ -105,13 +105,33 @@ namespace MovieApp.UI.Controllers
             }
             return View();
         }
-
-        public IActionResult UpdateUser()
+        
+        public async Task <IActionResult> UpdateUserDetails(int UserId)
         {
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiURL"] + "User/GetSpecificUsers?UserId="+UserId;
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        // var userModels = Newtonsoft.Json.JsonSerializer.Deserialize<List<UserModel>>(result);
+                        var userModels = JsonConvert.DeserializeObject<UserModel>(result);
+                        return View(userModels);
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Wrong entries";
+                    }
+                }
+            }
             return View();
         }
-        [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody]UserModel userModel)
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUserDetails(UserModel userModel)
         {
             using(HttpClient client =new HttpClient())
             {
@@ -123,6 +143,53 @@ namespace MovieApp.UI.Controllers
                     {
                         ViewBag.status = "Success";
                         ViewBag.message = "User-Field-Updated-Successfuly";
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Invalid input ";
+                    }
+                }
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> DeleteUserDetails(int UserId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiURL"] + "User/GetSpecificUsers?UserId=" + UserId;
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        // var userModels = Newtonsoft.Json.JsonSerializer.Deserialize<List<UserModel>>(result);
+                        var userModels = JsonConvert.DeserializeObject<UserModel>(result);
+                        return View(userModels);
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Wrong entries";
+                    }
+                }
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteUserDetails(UserModel userModel)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+       
+                string endpoint = _configuration["WebApiURL"] + "User/DeleteUser?UserId="+userModel.UserId;
+                using (var response = await client.DeleteAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        ViewBag.status = "Success";
+                        ViewBag.message = "User-Deleted-Successfuly";
                     }
                     else
                     {

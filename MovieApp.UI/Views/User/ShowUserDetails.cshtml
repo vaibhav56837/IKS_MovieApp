@@ -16,6 +16,8 @@
               <th>LastName</th>
               <th>Email</th>
               <th>MobileNumber</th>
+              <th>Edit</th>
+              <th>Update</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +30,8 @@
                             <td>@item.Lastname</td>
                             <td>@item.Email</td>
                             <td>@item.Mobile</td>
+                            <td><a asp-action="UpdateUserDetails" asp-controller="User" asp-route-UserId="@item.UserId">Edit-User</a></td>
+                            <td><a asp-action="DeleteUserDetails" asp-controller="User" asp-route-UserId="@item.UserId">Delete-User</a></td>
                         </tr>   
             }
          </tbody>

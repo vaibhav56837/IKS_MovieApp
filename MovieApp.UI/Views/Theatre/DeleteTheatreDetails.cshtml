@@ -1,0 +1,60 @@
+﻿@model MovieApp.Entity.TheatreModel
+@{
+    ViewData["Title"] = "DeleteTheatreDetails";
+}
+
+<a asp-action="ShowTheatreDetails" asp-controller="Theatre">Show-AllTheatreDetails</a>
+<hr />
+<h1>DeleteTheatreDetails</h1>
+<hr />
+<div class="container">
+<form method="post"> 
+    <div class="form-group">
+         <label class="col-sm-3">TheatreId</label>
+        <input type="text" class="form-control" asp-for="tId"  disabled="disabled"/>
+    </div>
+    <div class="form-group">
+         <label class="col-sm-3">Theatre-Name</label>
+        <input type="text" class="form-control" asp-for="tName" disabled="disabled" />
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3">Theatre-Capacity</label>
+        <input type="text" class="form-control" asp-for="tCapacity"disabled="disabled" />
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3">Theatre-Class</label>
+        <input type="text" class="form-control" asp-for="tClass"  disabled="disabled"/>
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3">Theatre-Location</label>
+        <input type="text" class="form-control" asp-for="tLocation"  disabled="disabled"/>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3">Theatre-Address</label>
+        <input type="text" class="form-control" asp-for="tAddress" disabled="disabled" />
+    </div>
+    <div class="form-group col-sm-3">
+        <input  type="submit"  value=" Confirm-Delete" class=" btn btn-lg btn-block btn-primary"/>
+    </div>
+    <div  class="form-group col-sm-3">
+        <input   type="button"  value="Reset"   class="btn btn-secondary"/>
+    </div>
+    
+    <hr />
+    @if(ViewBag.status=="Success")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+   else if(ViewBag.status=="Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>
+</div>
+
+
+

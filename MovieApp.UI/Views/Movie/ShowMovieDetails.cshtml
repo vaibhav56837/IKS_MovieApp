@@ -17,7 +17,9 @@
               <th>MovieDescription</th>
               <th>MovieLanguage</th>
               <th>MovieType</th>
-              <th>Book</th>
+              @*<th>Book</th>*@
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,10 +32,15 @@
                             <td>@item.MovieDescription</td>
                             <td>@item.MovieLanguage</td>
                             <td>@item.MovieType</td>
-                            <td><a asp-controller="Theatre" asp-action="ShowTheatreDetails" >Book-Ticket</a></td> 
+                         @*   <td><a asp-controller="Theatre" asp-action="ShowTheatreDetails" >Book-Ticket</a></td> *@
+                             <td><a asp-action="UpdataeMovieDetails" asp-controller="Movie" asp-route-MovieId="@item.MovieId">Update-Movie-Details</a></td>
+                             <td><a asp-action="DeleteMovieDetails" asp-controller="Movie" asp-route-MovieId="@item.MovieId">Delete-Movie-Details</a></td>
                         </tr>   
             }
          </tbody>
     </table>  
     
+    <div>
+       <a asp-action="RegisterMovie" asp-controller="Movie" >Add-New-Movie</a>
+   </div>
 
