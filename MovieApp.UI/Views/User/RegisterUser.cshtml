@@ -32,7 +32,7 @@
       <button type="button" class="btn btn-secondary">Reset</button>
     </div>
     
-    <hr />
+    <div>
     @if (ViewBag.status == "Ok")
     {
         <div class="alert alert-success">
@@ -45,7 +45,10 @@
             @ViewBag.message
         </div>
     }
-    <hr />
-    <a asp-controller="User" asp-action="UserLogin">Login</a>
+    </div>
+    <div>
+    <h6>Already Have Account ? log-in here </h6>
+    <a asp-controller="User" asp-action="UserLogin" class="btn btn-group-sm btn-outline-primary">Login</a>
+    </div>
 </form>
 </div>

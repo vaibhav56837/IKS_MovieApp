@@ -35,8 +35,8 @@
         <input type="text" class="form-control" asp-for="Mobile" disabled="disabled">
     </div>
     <input type="submit" class="btn btn-primary" value="Confirm-Delete">
-  
-    <hr />
+    <a asp-action="ShowUserDetails" asp-controller="User" class="btn btn-sm btn-danger">Back</a>
+    <div>
     @if (ViewBag.status == "Success")
     {
         <div class="alert alert-success">
@@ -49,6 +49,7 @@
             @ViewBag.message
         </div>
     }
+    </div>
     <hr />
  
 </form>

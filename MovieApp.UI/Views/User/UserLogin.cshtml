@@ -19,13 +19,19 @@
     <div class="form-group col-sm-3">
     <input  type="submit"  value="Login" class="btn btn-lg btn-block btn-primary"/>
     </div>
-    <hr />
-    @if (ViewBag.status == "Error")
+    <div>
+        @if (ViewBag.status == "Error")
     {
         <div class="alert alert-danger">
             @ViewBag.message
         </div>
     }
+    </div>
+    
+    <div>
+    <h6>Not Having Account ? SignUp-in here </h6>
+    <a asp-controller="User" asp-action="RegisterUser" class="btn btn-group-sm btn-outline-primary">SignUp</a>
+    </div>
 </form>
 </div>
-
+ 
