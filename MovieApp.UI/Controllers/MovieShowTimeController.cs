@@ -105,6 +105,7 @@ namespace MovieApp.UI.Controllers
                     {
                         ViewBag.status = "Success";
                         ViewBag.message = "Inserted!";
+                         return RedirectToAction("ShowMovieTime", "MovieShowTime");
                     }
                     else
                     {
@@ -113,7 +114,7 @@ namespace MovieApp.UI.Controllers
                     }
                 }
             }
-            //StatusCode : 200,201,404,500
+           
             return View();
         }
 
