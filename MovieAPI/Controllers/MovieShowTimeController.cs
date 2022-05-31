@@ -24,5 +24,23 @@ namespace MovieAPI.Controllers
         {
             return Ok(_movieShowTimeService.InsertMovieShowTime(movieShowTimeModel));
         }
+
+        [HttpGet("GetSpecificMovieShowTime")]
+        public IActionResult GetSpecificMovieShowTime(int id)
+        {
+            return Ok(_movieShowTimeService.GetSpecificMovieShowTimeById(id));
+        }
+
+        [HttpPut("UpdateMovieShowTime")]
+        public IActionResult UpdateMovieShowTime(MovieShowTimeModel movieShowTimeModel)
+        {
+            return Ok(_movieShowTimeService.UpdateMovieShowTime(movieShowTimeModel));
+        }
+
+        [HttpDelete("DeleteMovieShowTime")]
+        public IActionResult DeleteMovieShowTime(int id)
+        {
+            return Ok(_movieShowTimeService.DeleteMovieShowTime(id));
+        }
     }
 }

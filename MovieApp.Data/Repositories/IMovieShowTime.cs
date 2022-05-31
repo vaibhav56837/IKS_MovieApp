@@ -9,5 +9,12 @@ namespace MovieApp.Data.Repositories
     {
         string InsertMovieShowTime(MovieShowTimeModel movieShowTimeModel);
         List<MovieShowTimeModel> ShowMovieTime();
+
+        string UpdateMovieShowTime(MovieShowTimeModel movieShowTimeModel);
+
+        string DeletemovieShowTime(int ShowId);
+
+        MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId);
+
     }
 }

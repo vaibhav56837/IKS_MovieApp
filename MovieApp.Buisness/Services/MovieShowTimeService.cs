@@ -22,5 +22,20 @@ namespace MovieApp.Business.Services
         {
             return _movieShowTime.ShowMovieTime();
         }
+
+        public MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId)
+        {
+            return _movieShowTime.GetSpecificMovieShowTimeById(ShowId);
+        }
+
+        public string UpdateMovieShowTime(MovieShowTimeModel movieShowTimeModel)
+        {
+            return _movieShowTime.UpdateMovieShowTime(movieShowTimeModel);
+        }
+
+        public string DeleteMovieShowTime(int ShowId)
+        {
+            return _movieShowTime.DeletemovieShowTime(ShowId);
+        }
     }
 }

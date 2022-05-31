@@ -27,10 +27,13 @@
                 <td>@item.TheatreId</td>
                 <td>@item.ShowTime</td>
                 <td>@item.Date</td>
-                <td><a asp-action="EditUser" asp-route-ShowId=@item.ShowId>Edit</a></td>
-                <td><a asp-action="Delete" asp-route-ShowId=@item.ShowId>Delete</a></td>
+                <td><a asp-action="UpdateMovieshowTimes" asp-controller="MovieShowTime" asp-route-ShowId=@item.ShowId>Edit</a></td>
+                <td><a asp-action="DeleteMovieshowTimes"  asp-controller="MovieShowTime" asp-route-ShowId=@item.ShowId>Delete</a></td>
             </tr>
         }
     </tbody>
 </table>
+<div>
+    <a   asp-action="InsertMovieShowTimes" asp-controller="MovieShowTime" class="btn btn-primary">Add-New-Show-Time</a>
+</div>
 

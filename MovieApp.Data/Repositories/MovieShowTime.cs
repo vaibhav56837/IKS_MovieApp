@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace MovieApp.Data.Repositories
 {
@@ -13,6 +14,16 @@ namespace MovieApp.Data.Repositories
         public MovieShowTime(MovieDBContext movieDBContext)
         {
             _movieDBContext = movieDBContext;
+        }
+
+        public string DeletemovieShowTime(int ShowId)
+        {
+            string msg = "";
+            MovieShowTimeModel movieShowTimeModel = _movieDBContext.movieShowTimeModel.Find(ShowId);
+            _movieDBContext.movieShowTimeModel.Remove(movieShowTimeModel);
+            _movieDBContext.SaveChanges();
+            msg = "MovieShowTime Deleted!!!";
+            return msg;
         }
 
         public string InsertMovieShowTime(MovieShowTimeModel movieShowTimeModel)
@@ -25,6 +36,21 @@ namespace MovieApp.Data.Repositories
         public List<MovieShowTimeModel> ShowMovieTime()
         {
             return _movieDBContext.movieShowTimeModel.ToList();
+        }
+
+        public MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId)
+        {
+           return _movieDBContext.movieShowTimeModel.Find(ShowId);
+            
+        }
+
+        public string UpdateMovieShowTime(MovieShowTimeModel movieShowTimeModel)
+        {
+            string msg = "";
+            _movieDBContext.Entry(movieShowTimeModel).State= EntityState.Modified;
+            _movieDBContext.SaveChanges();
+            msg = "MovieShowTime Updated";
+            return msg;
         }
     }
 }
