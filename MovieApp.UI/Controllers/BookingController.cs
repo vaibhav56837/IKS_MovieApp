@@ -85,68 +85,84 @@ namespace MovieApp.UI.Controllers
                     }
                 }
             }
+            int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             List<SelectListItem> selectListItem = new List<SelectListItem>();
-            SelectListItem selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "1";
-            selectListItems1.Value = "1";
-            selectListItem.Add(selectListItems1);
+            foreach(int item in arr)
+            {
+                SelectListItem selectListItems1 = new SelectListItem();
+                   selectListItems1.Text = item.ToString();
+                   selectListItems1.Value = item.ToString();
+                   selectListItem.Add(selectListItems1);
+                   ViewBag.SeatsData = selectListItem;
+            }
 
-            selectListItems1= new SelectListItem();
-            selectListItems1.Text = "2";
-            selectListItems1.Value = "2";
-            selectListItem.Add(selectListItems1);
-
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "2";
-            selectListItems1.Value = "2";
-            selectListItem.Add(selectListItems1);
-
-
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "3";
-            selectListItems1.Value = "3";
-            selectListItem.Add(selectListItems1);
+            //for(int i=0;i<arr.Length;i++)
+            //{
+            //    SelectListItem selectListItems1 = new SelectListItem();
+            //    selectListItems1.Text = arr[i].ToString();
+            //    selectListItems1.Value = arr[i].ToString();
+            //    selectListItem.Add(selectListItems1);
+            //    ViewBag.SeatsData = selectListItem;
+            //}
 
 
+            // List<SelectListItem> selectListItem = new List<SelectListItem>();
+            // SelectListItem selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "1";
+            //selectListItems1.Value = "1";
+            //selectListItem.Add(selectListItems1);
 
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "4";
-            selectListItems1.Value = "4";
-            selectListItem.Add(selectListItems1);
-
-
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "5";
-            selectListItems1.Value = "5";
-            selectListItem.Add(selectListItems1);
-
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "2";
+            //selectListItems1.Value = "2";
+            //selectListItem.Add(selectListItems1);
 
 
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "6";
-            selectListItems1.Value = "6";
-            selectListItem.Add(selectListItems1);
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "3";
+            //selectListItems1.Value = "3";
+            //selectListItem.Add(selectListItems1);
 
 
 
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "7";
-            selectListItems1.Value = "7";
-            selectListItem.Add(selectListItems1);
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "4";
+            //selectListItems1.Value = "4";
+            //selectListItem.Add(selectListItems1);
+
+
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "5";
+            //selectListItems1.Value = "5";
+            //selectListItem.Add(selectListItems1);
 
 
 
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "9";
-            selectListItems1.Value = "9";
-            selectListItem.Add(selectListItems1);
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "6";
+            //selectListItems1.Value = "6";
+            //selectListItem.Add(selectListItems1);
 
 
-            selectListItems1 = new SelectListItem();
-            selectListItems1.Text = "10";
-            selectListItems1.Value = "10";
-            selectListItem.Add(selectListItems1);
-            ViewBag.SeatsData = selectListItem;
+
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "7";
+            //selectListItems1.Value = "7";
+            //selectListItem.Add(selectListItems1);
+
+
+
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "9";
+            //selectListItems1.Value = "9";
+            //selectListItem.Add(selectListItems1);
+
+
+            //selectListItems1 = new SelectListItem();
+            //selectListItems1.Text = "10";
+            //selectListItems1.Value = "10";
+            //selectListItem.Add(selectListItems1);
+            //ViewBag.SeatsData = selectListItem;
             return View();
         }
 
