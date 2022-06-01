@@ -42,5 +42,11 @@ namespace MovieAPI.Controllers
         {
             return Ok(_movieShowTimeService.DeleteMovieShowTime(id));
         }
+
+        [HttpGet("GetShowTimesAndDateForSpecificTheatreAndMovie")]
+        public IActionResult GetShowTimesAndDateForSpecificTheatreAndMovie(int mId)
+        {
+            return Ok(_movieShowTimeService.GetShowTimesAndDateForSpecificTheatreAndMovie(mId));
+        }
     }
 }

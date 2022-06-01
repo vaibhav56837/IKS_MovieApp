@@ -23,7 +23,7 @@ namespace MovieApp.Business.Services
             return _movieShowTime.ShowMovieTime();
         }
 
-        public MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId)
+        public MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId, int tId)
         {
             return _movieShowTime.GetSpecificMovieShowTimeById(ShowId);
         }
@@ -36,6 +36,16 @@ namespace MovieApp.Business.Services
         public string DeleteMovieShowTime(int ShowId)
         {
             return _movieShowTime.DeletemovieShowTime(ShowId);
+        }
+
+        public object GetSpecificMovieShowTimeById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MovieShowTimeModel> GetShowTimesAndDateForSpecificTheatreAndMovie(int mId)
+        {
+            return _movieShowTime.GetShowTimesAndDateForSpecificTheatreAndMovie(mId);
         }
     }
 }

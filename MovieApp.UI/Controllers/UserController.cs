@@ -21,6 +21,12 @@ namespace MovieApp.UI.Controllers
         {
             _configuration = configuration;
         }
+        // for demonstration...
+        public IActionResult ShowUserByID()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> ShowUserDetails()
         {

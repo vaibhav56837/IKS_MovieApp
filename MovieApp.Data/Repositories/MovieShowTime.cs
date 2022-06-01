@@ -52,5 +52,14 @@ namespace MovieApp.Data.Repositories
             msg = "MovieShowTime Updated";
             return msg;
         }
+
+        public List<MovieShowTimeModel> GetShowTimesAndDateForSpecificTheatreAndMovie(int mId)
+        {
+            //MovieShowTimeModel movieShowTimeData = null;
+            var movieShowTime = _movieDBContext.movieShowTimeModel.Where(u => u.MovieId == mId).ToList();
+            //if (movieShowTime.Count > 0)
+            //    movieShowTimeData = movieShowTime[0];
+            return movieShowTime;
+        }
     }
 }

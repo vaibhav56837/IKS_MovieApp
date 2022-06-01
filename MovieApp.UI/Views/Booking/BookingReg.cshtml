@@ -1,0 +1,46 @@
+﻿@model MovieApp.Entity.BookingModel
+@{
+    ViewData["Title"] = "BookingReg";
+}
+
+<hr />
+<h1>BookingReg</h1>
+<hr />
+
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label>UserId</label>
+            <select asp-for="UId" asp-items="@(new SelectList(ViewBag.UserData,"Value","Text"))" class="form-control"></select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>MovieId</label>
+            <input asp-for="MId" asp-items="@ViewBag.MovieId" class="form-control" />
+        </div>
+        <br />
+        <div class="form-group">
+            <label>TheatreId</label>
+            <select asp-for="TId" asp-items="@(new SelectList(ViewBag.TheatreData,"Value","Text"))" class="form-control"></select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>Date</label>
+            <select asp-for="Date" asp-items="@(new SelectList(ViewBag.DateData,"Value","Text"))" class="form-control"></select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>Time</label>
+            <select asp-for="ShowTime" asp-items="@(new SelectList(ViewBag.TimeData,"Value","Text"))" class="form-control"></select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>Seats</label>
+            <select asp-for="Seats" asp-items="@(new SelectList(ViewBag.SeatsData,"Value","Text"))" class="form-control"></select>
+        </div>
+        <br />
+         <input type="submit" value="Book" class="btn btn-primary" />
+    <input type="button" value="Reset" class="btn btn-secondary" />
+    </form>
+</div>
+

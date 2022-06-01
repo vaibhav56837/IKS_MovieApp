@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using MovieApp.Entity;
 using Newtonsoft.Json;
@@ -158,6 +159,7 @@ namespace MovieApp.UI.Controllers
             }
             return View();
         }
+    
     }
 }
 

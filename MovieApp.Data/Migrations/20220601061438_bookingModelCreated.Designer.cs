@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieApp.Data.DataConnection;
 
 namespace MovieApp.Data.Migrations
 {
     [DbContext(typeof(MovieDBContext))]
-    partial class MovieDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220601061438_bookingModelCreated")]
+    partial class bookingModelCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace MovieApp.Data.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<int>("Seats")
@@ -37,19 +39,14 @@ namespace MovieApp.Data.Migrations
                     b.Property<string>("ShowTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UId")
+                    b.Property<int>("TheatreId")
                         .HasColumnType("int");
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("MId");
+                    b.HasIndex("MovieId");
 
-                    b.HasIndex("TId");
-
-                    b.HasIndex("UId");
+                    b.HasIndex("TheatreId");
 
                     b.ToTable("bookingModel");
                 });
@@ -164,27 +161,19 @@ namespace MovieApp.Data.Migrations
                 {
                     b.HasOne("MovieApp.Entity.MovieModel", "movieModel")
                         .WithMany()
-                        .HasForeignKey("MId")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MovieApp.Entity.TheatreModel", "theatreModel")
                         .WithMany()
-                        .HasForeignKey("TId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieApp.Entity.UserModel", "userModel")
-                        .WithMany()
-                        .HasForeignKey("UId")
+                        .HasForeignKey("TheatreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("movieModel");
 
                     b.Navigation("theatreModel");
-
-                    b.Navigation("userModel");
                 });
 
             modelBuilder.Entity("MovieApp.Entity.MovieShowTimeModel", b =>

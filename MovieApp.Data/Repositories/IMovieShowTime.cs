@@ -16,5 +16,7 @@ namespace MovieApp.Data.Repositories
 
         MovieShowTimeModel GetSpecificMovieShowTimeById(int ShowId);
 
+        public List<MovieShowTimeModel> GetShowTimesAndDateForSpecificTheatreAndMovie(int mId);
+
     }
 }
