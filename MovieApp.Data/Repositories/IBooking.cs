@@ -8,5 +8,7 @@ namespace MovieApp.Data.Repositories
     public interface IBooking
     {
         public string BookingRegister(BookingModel bookingModel);
+
+        public List<BookingModel>GetAllBooking( );
     }
 }

@@ -18,5 +18,10 @@ namespace MovieApp.Business.Services
         {
             return _iBooking.BookingRegister(bookingModel);
         }
+
+        public List<BookingModel>GetAllBooking()
+        {
+            return _iBooking.GetAllBooking();
+        }
     }
 }

@@ -20,5 +20,10 @@ namespace MovieAPI.Controllers
         {
             return Ok(_bookingService.AddBooking(bookingModel));    
         }
+        [HttpGet("GetAllBookings")]
+        public IActionResult GetAllBookings()
+        {
+            return Ok(_bookingService.GetAllBooking());
+        }
     }
 }

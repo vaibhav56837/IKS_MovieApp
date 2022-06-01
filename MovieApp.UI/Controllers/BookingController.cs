@@ -179,7 +179,7 @@ namespace MovieApp.UI.Controllers
                     {
                         ViewBag.status = "Success";
                         ViewBag.message = "Inserted!";
-                       // return RedirectToAction("ShowMovieTime", "MovieShowTime");
+                       return RedirectToAction("GetBookings", "Booking");
                     }
                     else
                     {
@@ -192,5 +192,27 @@ namespace MovieApp.UI.Controllers
         
         }
 
+        public async Task<IActionResult> GetBookings()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiURL"] + "Booking/GetAllBookings";
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var bookingModels = JsonConvert.DeserializeObject<IEnumerable<BookingModel>>(result);
+                        return View(bookingModels);
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Wrong entries";
+                    }
+                }
+            }
+            return View();
+        }
     }
 }

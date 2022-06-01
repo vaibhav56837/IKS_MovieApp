@@ -2,6 +2,7 @@
 using MovieApp.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MovieApp.Data.Repositories
@@ -20,6 +21,10 @@ namespace MovieApp.Data.Repositories
             _movieDBContext.SaveChanges();
             msg = "Inserted";
             return msg;
+        }
+        public List<BookingModel> GetAllBooking()
+        {
+            return _movieDBContext.bookingModel.ToList();
         }
     }
 }
