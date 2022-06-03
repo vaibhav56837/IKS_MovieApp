@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MovieApp.Entity;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieApp.UI.Controllers
 {
+
+    
     public class MovieController : Controller
     {
         IConfiguration _configuration;
@@ -23,7 +27,8 @@ namespace MovieApp.UI.Controllers
             using(HttpClient client= new HttpClient())
             {
                 string endpoint = _configuration["WebApiURL"] + "Movie/SelectMovie";
-                using(var response= await client.GetAsync(endpoint))
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TempData["token"].ToString());
+                using (var response= await client.GetAsync(endpoint))
                 {
                     if(response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -51,6 +56,7 @@ namespace MovieApp.UI.Controllers
             using(HttpClient client=new HttpClient())
             {
                 StringContent constent = new StringContent(JsonConvert.SerializeObject(movieModel), Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TempData["token"].ToString());
                 string endpoint= _configuration["WebApiURL"] + "Movie/Register";
                 using (var response = await client.PostAsync(endpoint, constent))
                 {
@@ -72,6 +78,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TempData["token"].ToString());
                 string endpoint = _configuration["WebApiURL"] + "Movie/GetSpecificMovie?id="+ MovieId;
                 using (var response = await client.GetAsync(endpoint))
                 {
@@ -141,7 +148,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-               
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TempData["token"].ToString());
                 string endpoint = _configuration["WebApiURL"] + "Movie/DeleteMovie?movieId="+movieModel.MovieId;
                 using (var response = await client.DeleteAsync(endpoint))
                 {

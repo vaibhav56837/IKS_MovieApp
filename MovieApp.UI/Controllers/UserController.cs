@@ -9,8 +9,10 @@ using System;
 using System.Linq;
 using System.Text;
 
+
 namespace MovieApp.UI.Controllers
 {
+  
     public class UserController : Controller
     {
         IConfiguration _configuration;
@@ -94,18 +96,20 @@ namespace MovieApp.UI.Controllers
         {
             using(HttpClient client =new HttpClient())
             {
-                StringContent content =new StringContent(JsonConvert.SerializeObject(userModel), Encoding.UTF8, "application/json");
-                string endpoint = _configuration["WebApiURL"] + "User/Login";
+                StringContent content = new StringContent(JsonConvert.SerializeObject(userModel), Encoding.UTF8, "application/json");
+                string endpoint = _configuration["WebApiURL"] + "Token/Login";
                 using(var response= await client.PostAsync(endpoint, content))
                 {
                     if(response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
+                        TempData["token"] = response.Content;
+                        TempData.Keep();
                         return RedirectToAction("ShowMovieDetails", "Movie");
                     }
                     else
                     {
                         ViewBag.status = "Error";
-                        ViewBag.message = "Wrong entries!";
+                        ViewBag.message = "Wrong Credentails!";
                     }
                 }
             }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace MovieApp.UI.Controllers
 {
@@ -21,8 +22,33 @@ namespace MovieApp.UI.Controllers
         public async Task<IActionResult> BookingReg(int movieId)
         {
 
-                ViewBag.MovieId = movieId;
-                using (HttpClient client = new HttpClient())
+               // ViewBag.MovieId = movieId;
+            // For movie Selection
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiURL"] + "Movie/GetSpecificMovie?id="+ movieId;
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var movieModel = JsonConvert.DeserializeObject<MovieModel>(result);
+                        List<SelectListItem> selectListItems = new List<SelectListItem>();
+                        SelectListItem selectListItem2 = new SelectListItem();
+                        selectListItem2.Text = movieModel.MovieName;
+                        selectListItem2.Value = movieModel.MovieId.ToString();
+                        selectListItems.Add(selectListItem2);
+                        ViewBag.movieData = selectListItems;
+                        //ViewData[movieModel.MovieName] =movieModel.MovieId.ToString();
+                        // ViewBag.MovieId = movieModel.MovieId;
+                        //ViewBag.MovieId = movieModel.MovieName;
+                    }    
+                   
+                }
+            }
+
+            // For User-Selection
+            using (HttpClient client = new HttpClient())
                 {
                     string endpoint = _configuration["WebApiURL"] + "User/SelectUsers";
                     using (var response = await client.GetAsync(endpoint))
@@ -55,14 +81,27 @@ namespace MovieApp.UI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         var movieShowTimeModel = JsonConvert.DeserializeObject<List<MovieShowTimeModel>>(result);
-                        List<SelectListItem> selectListItems = new List<SelectListItem>();
-                        foreach (var item in movieShowTimeModel)
+                        using (HttpClient client1 = new HttpClient())
                         {
-                            SelectListItem selectListItem2 = new SelectListItem();
-                            selectListItem2.Text = item.TheatreId.ToString();
-                            selectListItem2.Value = item.TheatreId.ToString();
-                            selectListItems.Add(selectListItem2);
-                            ViewBag.TheatreData = selectListItems;
+                            string endpoint1 = _configuration["WebApiURL"] + "Theatre/SelectTheatre";
+                            using (var response1 = await client1.GetAsync(endpoint1))
+                            {
+                                if (response1.StatusCode == System.Net.HttpStatusCode.OK)
+                                {
+                                    var result1 = await response1.Content.ReadAsStringAsync();
+                                    var theatreModelsList = JsonConvert.DeserializeObject<List<TheatreModel>>(result1);
+                                    List<SelectListItem> selectListItems = new List<SelectListItem>();
+                                    foreach (var item in movieShowTimeModel)
+                                    {
+                                        SelectListItem selectListItem2 = new SelectListItem();
+                                        var theatre= theatreModelsList.Where(obj => obj.tId == item.TheatreId).ToList()[0];
+                                        selectListItem2.Text = theatre.tName;
+                                        selectListItem2.Value = item.TheatreId.ToString();
+                                        selectListItems.Add(selectListItem2);
+                                        ViewBag.TheatreData = selectListItems;
+                                    }
+                                }
+                            }
                         }
                         List<SelectListItem> selectListItemss = new List<SelectListItem>();
                         foreach (var item in movieShowTimeModel)

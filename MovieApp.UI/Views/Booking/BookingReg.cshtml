@@ -14,9 +14,13 @@
             <select asp-for="UId" asp-items="@(new SelectList(ViewBag.UserData,"Value","Text"))" class="form-control"></select>
         </div>
         <br />
-        <div class="form-group">
+@*        <div class="form-group">
             <label>MovieId</label>
             <input asp-for="MId"  value="@ViewBag.MovieId" class="form-control" readonly="readonly"/>
+        </div>*@
+         <div class="form-group">
+            <label>Movie</label>
+            <select asp-for="MId"  asp-items="@(new SelectList(ViewBag.movieData,"Value","Text"))" class="form-control" ></select>
         </div>
         <br />
         <div class="form-group">
